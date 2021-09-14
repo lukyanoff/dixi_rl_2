@@ -1,0 +1,12 @@
+.ipynb_checkpoints
+/_temp/
+/venv/
+/.idea/
+__pycache__
+
+# ignore downloaded content and model
+/reference/**/*.tsv
+/reference/**/*.csv
+/reference/**/*.zip
+/reference/**/*.h5
+

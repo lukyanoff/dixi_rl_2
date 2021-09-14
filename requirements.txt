@@ -1,0 +1,12 @@
+numpy
+tensorflow
+opencv-python
+matplotlib
+tensorboardx
+pandas
+mplfinance
+ta
+bitfinex-tencars
+seaborn
+sklearn
+gym
