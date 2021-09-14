@@ -5,7 +5,9 @@ import runner as helper
 
 
 def train_agent():
-    train_df = pd.read_pickle("NYSE:BABA_dataset.pickle")
+    train_df = pd.read_csv("NYSE:BABA_dataset.csv")
+    train_df.set_index('date', inplace=True, drop=False)
+
     train_df.drop(columns=['date', 'volume', 'open', 'low'], inplace=True)
     train_df.info()
 
@@ -23,7 +25,12 @@ def train_agent():
 def test_environment():
     from datetime import datetime
 
-    train_df = pd.read_pickle("NYSE:BABA_dataset.pickle")
+    train_df = pd.read_csv("NYSE:BABA_dataset.csv")
+    train_df.set_index('date', inplace=True, drop=False)
+    # # train_df.reset_index(drop=True, inplace=True)
+    # train_df.to_csv("NYSE:BABA_dataset.csv", index=False)
+
+
     train_df.drop(columns=['date', 'volume', 'open', 'low'], inplace=True)
     train_df.info()
     env = DixiTradingEnvironment(df=train_df, initial_position=100, window_size=5)
