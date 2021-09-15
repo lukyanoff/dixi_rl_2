@@ -2,7 +2,7 @@ from collections import deque
 import numpy as np
 
 
-def train_agent(env, agent, visualize=False, train_episodes=50, training_batch_size=500):
+def train_agent(env, agent, visualize=False, train_episodes=99999, training_batch_size=500):
     #agent.create_writer(env.initial_balance, env.normalize_value, train_episodes)  # create TensorBoard writer
     total_average = deque(maxlen=20)  # save recent 100 episodes net worth
     best_average_reward = 0  # used to track best average net worth
@@ -29,8 +29,9 @@ def train_agent(env, agent, visualize=False, train_episodes=50, training_batch_s
             state = next_state
             if done:
                 break
-        print("Reward", reward)
-        print("Reward meta", info)
+        total_average.append(reward)
+        print("Reward", reward, np.average(total_average))
+        # print("Reward meta", info)
 
         a_loss, c_loss = agent.replay(states, actions, rewards, predictions, dones, next_states)
         # total_average.append(env.net_worth)
